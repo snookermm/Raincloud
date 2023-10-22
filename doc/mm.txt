@@ -1,0 +1,25 @@
+	     Nut memory map
+Virtual memory map with 4 level page tables:
+
+... unused hole ...
+0xffffffffff8fffff - 0xffffffffff000000 (=8 MB)    Syscall Table
+... unused hole ...
+0xffffffff8fffffff - 0xffffffff80000000 (=256 MB)  Kernel Image
+... unused hole ...
+0xfffff8ffffffffff - 0xfffff80000000000 (=1 TB)    Kernel Heap
+... unused hole ...
+0xfffff4ffffffffff - 0xfffff40000000000 (=1 TB)    Virtual Memory map
+... unused hole ...
+0xfffff0ffffffffff - 0xfffff00000000000 (=1 TB)    Kernel Stack
+... unused hole ...
+0xffff8fffffffffff - 0xffff800000000000 (=16 TB)   Direct mapping of all physical memory
+0x00007fffffffffff - 0x0000000000000000 (=47 bits) User Space
+
+Physical memory map:
+x86:
+0x0000000000100000 - 0x0000000000000000 (=1 MB)    System tables
+xxxxxxxxxxxxxxxxxx - 0x0000000000100000            Kernel Image
+                                                   Kernel Stack
+                                                   Memory map tables
+                                                   
+... the rest available memory ...                  Flexible
