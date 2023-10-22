@@ -1,0 +1,23 @@
+OUTPUT_FORMAT(binary)
+ENTRY(_start)
+SECTIONS
+{
+	. = 0xFFFFFFFF80004000;
+	.text : { 
+		arch/x86/asm/start.o(.text)
+		*(.text)
+		}
+	.rodata : { *(.rodata) }
+	.data : { *(.data) }
+	.bss : { *(.bss) } = 0
+	.zero : 
+	{
+		. += 8;
+	}
+	__text_start = LOADADDR(.text);
+	__text_end = LOADADDR(.text) + SIZEOF(.text);
+	__data_start = LOADADDR(.rodata);
+	__data_end = LOADADDR(.rodata) + SIZEOF(.rodata) + SIZEOF(.data);
+	__bss_start = LOADADDR(.bss);
+	__bss_end = LOADADDR(.bss) + SIZEOF(.bss);
+}
